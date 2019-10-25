@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     	xmlns:b="http://bootsfaces.net/ui">
+     
+      <h:head>
+ 
+ 
+ 
+   <title>Angle - Bootstrap Admin Template</title>
+   <!-- =============== VENDOR STYLES ===============-->
+   <!-- FONT AWESOME-->
+   <h:outputStylesheet library="default"  name="vendor/fontawesome/css/font-awesome.min.css"></h:outputStylesheet>
+   <!-- SIMPLE LINE ICONS-->
+   <h:outputStylesheet  library="default"  name="vendor/simple-line-icons/css/simple-line-icons.css"></h:outputStylesheet>
+   <!-- ANIMATE.CSS-->
+   <h:outputStylesheet  library="default"  name="vendor/animate.css/animate.min.css"></h:outputStylesheet>
+   <!-- WHIRL (spinners)-->
+   <h:outputStylesheet library="default"  name="vendor/whirl/dist/whirl.css"></h:outputStylesheet>
+   <!-- =============== PAGE VENDOR STYLES ===============-->
+   <!-- WEATHER ICONS-->
+   <h:outputStylesheet library="default"  name="vendor/weather-icons/css/weather-icons.min.css"></h:outputStylesheet>
+   <!-- =============== BOOTSTRAP STYLES ===============-->
+   <h:outputStylesheet library="default"  name="css/bootstrap.css"> </h:outputStylesheet>
+   <!-- =============== APP STYLES ===============-->
+   <h:outputStylesheet library="default" name="css/app.css"></h:outputStylesheet>
+   
+    
+       <h:outputScript library="default" name="vendor/modernizr/modernizr.custom.js"></h:outputScript>
+   <!-- MATCHMEDIA POLYFILL-->
+   <h:outputScript library="default" name="vendor/matchMedia/matchMedia.js"></h:outputScript>
+   <!-- JQUERY-->
+   <h:outputScript library="default" name="vendor/jquery/dist/jquery.js"></h:outputScript>
+   <!-- BOOTSTRAP-->
+   <h:outputScript library="default" name="vendor/bootstrap/dist/js/bootstrap.js"></h:outputScript>
+   <!-- STORAGE API-->
+   <h:outputScript library="default" name="vendor/jQuery-Storage-API/jquery.storageapi.js"></h:outputScript>
+   <!-- JQUERY EASING-->
+   <h:outputScript library="default" name="vendor/jquery.easing/js/jquery.easing.js"></h:outputScript>
+   <!-- ANIMO-->
+   <h:outputScript library="default" name="vendor/animo.js/animo.js"></h:outputScript>
+   <!-- SLIMSCROLL-->
+   <h:outputScript library="default" name="vendor/slimScroll/jquery.slimscroll.min.js"></h:outputScript>
+   <!-- SCREENFULL-->
+   <h:outputScript library="default" name="vendor/screenfull/dist/screenfull.js"></h:outputScript>
+   <!-- LOCALIZE-->
+   <h:outputScript library="default" name="vendor/jquery-localize-i18n/dist/jquery.localize.js"></h:outputScript>
+   <!-- RTL demo-->
+   <h:outputScript library="default" name="js/demo/demo-rtl.js"></h:outputScript>
+   <!-- =============== PAGE VENDOR h:outputScript library="default"S ===============-->
+   <!-- SPARKLINE-->
+   <h:outputScript library="default" name="vendor/sparkline/index.js"></h:outputScript>
+   <!-- FLOT CHART-->
+   <h:outputScript library="default" name="vendor/Flot/jquery.flot.js"></h:outputScript>
+   <h:outputScript library="default" name="vendor/flot.tooltip/js/jquery.flot.tooltip.min.js"></h:outputScript>
+   <h:outputScript library="default" name="vendor/Flot/jquery.flot.resize.js"></h:outputScript>
+   <h:outputScript library="default" name="vendor/Flot/jquery.flot.pie.js"></h:outputScript>
+   <h:outputScript library="default" name="vendor/Flot/jquery.flot.time.js"></h:outputScript>
+   <h:outputScript library="default" name="vendor/Flot/jquery.flot.categories.js"></h:outputScript>
+   <h:outputScript library="default" name="vendor/flot-spline/js/jquery.flot.spline.min.js"></h:outputScript>
+   <!-- CLASSY LOADER-->
+   <h:outputScript library="default" name="vendor/jquery-classyloader/js/jquery.classyloader.min.js"></h:outputScript>
+   <!-- MOMENT JS-->
+   <h:outputScript library="default" name="vendor/moment/min/moment-with-locales.min.js"></h:outputScript>
+   <!-- DEMO-->
+   <h:outputScript library="default" name="js/demo/demo-flot.js"></h:outputScript>
+   <!-- =============== APP h:outputScript library="default"S ===============-->
+   <h:outputScript library="default" name="js/app.js"></h:outputScript>
+           
+
+       
+       
+
+       
+       
+  
+    
+                      </h:head> 
+       
+       
+        <h:body> 
+               	<div class="wrapper">
+        
+      	<ui:include src="header.xhtml" />
+		<ui:include src="side-bar.xhtml" />
+		<ui:insert name="content" />
+		<ui:include src="footer.xhtml" />
+                         	</div>
+          
+           </h:body>
+            </html>
