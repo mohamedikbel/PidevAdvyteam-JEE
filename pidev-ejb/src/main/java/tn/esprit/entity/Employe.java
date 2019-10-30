@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Employe  {
 @Id
 @GeneratedValue( strategy = GenerationType.IDENTITY )
-@Column(name="EM_Id")
+@Column(name="id")
 private int id;
 public int getId() {
 	return id;
@@ -84,13 +84,22 @@ public void setDocuments(List<Document> documents) {
 	this.documents = documents;
 }
 
+public String getImage() {
+	return image;
+}
+
+public void setImage(String image) {
+	this.image = image;
+}
 @Column(name="nom")
 private String nom;
+
+
 @Column(name="prenom")
 private String prenom;
 @Column(name="email")
 private String email;
-@Column(name="EM_Password")
+@Column(name="password")
 private String Password;
 @Column(name="datedn")
 private Date datedn;
@@ -99,27 +108,37 @@ private String codeqr;
 @Enumerated(EnumType.STRING)
 @Column(name="role")
 private Role role;
-
-@Column(name="isActif")
-private boolean isActif;
-
+@Column(name="image")
+private String image;
 
 
 
-public boolean isActif() {
-	return isActif;
+
+
+
+public Employe(String nom, String prenom, String email, String password, Date datedn, Role role, String image) {
+	super();
+	this.nom = nom;
+	this.prenom = prenom;
+	this.email = email;
+	Password = password;
+	this.datedn = datedn;
+	this.role = role;
+	this.image = image;
 }
-
-public void setActif(boolean isActif) {
-	this.isActif = isActif;
-}
-
-@ManyToMany(mappedBy="employes")
-//@NotNull
+@ManyToMany
 private List<Document> documents;
 
 public Employe() {
 	super();
+
+
+
+
+
+
+
+
 }
 
 

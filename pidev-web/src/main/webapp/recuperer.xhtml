@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+  <h:head>
+ 
+ 
+ 
+   <title>Login</title>
+   <!-- =============== VENDOR STYLES ===============-->
+   <!-- FONT AWESOME-->
+   <h:outputStylesheet library="common"  name="vendor/fontawesome/css/font-awesome.min.css"></h:outputStylesheet>
+   <!-- SIMPLE LINE ICONS-->
+   <h:outputStylesheet  library="common"  name="vendor/simple-line-icons/css/simple-line-icons.css"></h:outputStylesheet>
+   <!-- ANIMATE.CSS-->
+   <h:outputStylesheet  library="common"  name="vendor/animate.css/animate.min.css"></h:outputStylesheet>
+   <!-- WHIRL (spinners)-->
+   <h:outputStylesheet library="common"  name="vendor/whirl/dist/whirl.css"></h:outputStylesheet>
+   <!-- =============== PAGE VENDOR STYLES ===============-->
+   <!-- WEATHER ICONS-->
+   <h:outputStylesheet library="common"  name="vendor/weather-icons/css/weather-icons.min.css"  ></h:outputStylesheet>
+   <!-- =============== BOOTSTRAP STYLES ===============-->
+   <h:outputStylesheet library="common"  name="css/bootstrap.css"> </h:outputStylesheet>
+   <!-- =============== APP STYLES ===============-->
+   <h:outputStylesheet library="common" name="css/app.css"></h:outputStylesheet>
+   
+    
+       <h:outputScript library="common" name="vendor/modernizr/modernizr.custom.js"></h:outputScript>
+   <!-- MATCHMEDIA POLYFILL-->
+   <h:outputScript library="common" name="vendor/matchMedia/matchMedia.js"></h:outputScript>
+   <!-- JQUERY-->
+   <h:outputScript library="common" name="vendor/jquery/dist/jquery.js"></h:outputScript>
+   <!-- BOOTSTRAP-->
+   <h:outputScript library="common" name="vendor/bootstrap/dist/js/bootstrap.js"></h:outputScript>
+   <!-- STORAGE API-->
+   <h:outputScript library="common" name="vendor/jQuery-Storage-API/jquery.storageapi.js"></h:outputScript>
+   <!-- JQUERY EASING-->
+   <h:outputScript library="common" name="vendor/jquery.easing/js/jquery.easing.js"></h:outputScript>
+   <!-- ANIMO-->
+   <h:outputScript library="common" name="vendor/animo.js/animo.js"></h:outputScript>
+   <!-- SLIMSCROLL-->
+   <h:outputScript library="common" name="vendor/slimScroll/jquery.slimscroll.min.js"></h:outputScript>
+   <!-- SCREENFULL-->
+   <h:outputScript library="common" name="vendor/screenfull/dist/screenfull.js"></h:outputScript>
+   <!-- LOCALIZE-->
+   <h:outputScript library="common" name="vendor/jquery-localize-i18n/dist/jquery.localize.js"></h:outputScript>
+   <!-- RTL demo-->
+   <h:outputScript library="common" name="js/demo/demo-rtl.js"></h:outputScript>
+   <!-- =============== PAGE VENDOR h:outputScript library="common"S ===============-->
+   <!-- SPARKLINE-->
+   <h:outputScript library="common" name="vendor/sparkline/index.js"></h:outputScript>
+   <!-- FLOT CHART-->
+   <h:outputScript library="common" name="vendor/Flot/jquery.flot.js"></h:outputScript>
+   <h:outputScript library="common" name="vendor/flot.tooltip/js/jquery.flot.tooltip.min.js"></h:outputScript>
+   <h:outputScript library="common" name="vendor/Flot/jquery.flot.resize.js"></h:outputScript>
+   <h:outputScript library="common" name="vendor/Flot/jquery.flot.pie.js"></h:outputScript>
+   <h:outputScript library="common" name="vendor/Flot/jquery.flot.time.js"></h:outputScript>
+   <h:outputScript library="common" name="vendor/Flot/jquery.flot.categories.js"></h:outputScript>
+   <h:outputScript library="common" name="vendor/flot-spline/js/jquery.flot.spline.min.js"></h:outputScript>
+   <!-- CLASSY LOADER-->
+   <h:outputScript library="common" name="vendor/jquery-classyloader/js/jquery.classyloader.min.js"></h:outputScript>
+   <!-- MOMENT JS-->
+   <h:outputScript library="common" name="vendor/moment/min/moment-with-locales.min.js"></h:outputScript>
+   <!-- DEMO-->
+   <h:outputScript library="common" name="js/demo/demo-flot.js"></h:outputScript>
+   <!-- =============== APP h:outputScript library="common"S ===============-->
+   <h:outputScript library="common" name="js/app.js"></h:outputScript>
+           
+
+       
+       
+
+       
+       
+  
+    
+                      </h:head> 
+       
+       
+<h:body>
+   <div class="wrapper">
+      <div class="block-center mt-xl wd-xl">
+         <!-- START panel-->
+         <div class="panel panel-dark panel-flat">
+            <div class="panel-heading text-center">
+               <a href="#">
+                  <img src="img/logo.png" alt="Image" class="block-center img-rounded"/>
+               </a>
+            </div>
+            <div class="panel-body">
+               <p class="text-center pv">Mot de passe oublié </p>
+               <h:form role="form">
+                  <p class="text-center">Veuillez Saisir Votre Adresse</p>
+                  <div class="form-group has-feedback">
+                     <label for="resetInputEmail1" class="text-muted">Adresse Mail</label>
+                     <h:inputText value="#{recupererBean.mail}"  type="email" placeholder="Enter email" autocomplete="off" class="form-control"/>
+                     <span class="fa fa-envelope form-control-feedback text-muted"></span>
+                  </div>
+                  <h:commandButton  action="#{recupererBean.recupercompte}" value="Recuperer" class="btn btn-danger btn-block"/>
+               </h:form>
+            </div>
+         </div>
+         <!-- END panel-->
+         <div class="p-lg text-center">
+            <span></span>
+            <span>2016</span>
+            <span>-</span>
+            <span>Angle</span>
+            <br></br>
+            <span>Bootstrap Admin Template</span>
+         </div>
+      </div>
+   </div>
+   <!-- =============== VENDOR SCRIPTS ===============-->
+   <!-- MODERNIZR-->
+   <script src="../vendor/modernizr/modernizr.custom.js"></script>
+   <!-- JQUERY-->
+   <script src="../vendor/jquery/dist/jquery.js"></script>
+   <!-- BOOTSTRAP-->
+   <script src="../vendor/bootstrap/dist/js/bootstrap.js"></script>
+   <!-- STORAGE API-->
+   <script src="../vendor/jQuery-Storage-API/jquery.storageapi.js"></script>
+   <!-- PARSLEY-->
+   <script src="../vendor/parsleyjs/dist/parsley.min.js"></script>
+   <!-- =============== APP SCRIPTS ===============-->
+   <script src="js/app.js"></script>
+
+
+
+
+</h:body>
+</html>
