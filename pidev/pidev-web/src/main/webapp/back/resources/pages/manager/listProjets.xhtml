@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+
+	<ui:define name="title">welcome </ui:define>
+	<ui:define name="content">
+		<h:form id="form">
+			<p:fieldset legend="Projects" style="width:90% ">
+				<p:dataGrid var="projet" value="#{projetBean.projets}" columns="3">
+					<p:panel header="#{projet.nom}" style="text-align:center">
+						<h:panelGrid columns="1" style="width:100%">
+							<h:inputText value="#{projet.description}" />
+							<h:commandButton id="btn"
+								action="#{projetBean.consulterProjet(projet)}" value="consulter" />
+							<h:message for="btn" />
+						</h:panelGrid>
+					</p:panel>
+
+				</p:dataGrid>
+			</p:fieldset>
+			<h:commandButton id="btn"
+				action="#{projetBean.goToAjouterProjet()}" value="Ajouter Projet" /> 
+		</h:form> 
+	</ui:define>
+</ui:composition>
+
