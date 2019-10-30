@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+	<ui:define name="title">welcome </ui:define>
+	<ui:define name="content">
+
+		<h:form>
+			<p:panelGrid columns="2">
+				<h:panelGrid>
+					<h:outputText value="nom du projet" />
+					<h:inputText value="#{projetBean.nom}" />
+
+					<h:outputText value="description" />
+					<h:inputText value="#{projetBean.description}" />
+
+					<h:outputText value="durée estimée " />
+					<h:inputText value="#{projetBean.dureeEstimee}" />
+
+					<h:outputText value="date debut" />
+					<p:calendar value="#{projetBean.date_debut}" showOn="button"></p:calendar>
+
+					<h:commandButton action="#{projetBean.ajouterProjet}"
+						value="Ajouter Projet" />
+
+
+				</h:panelGrid>
+				<h:panelGrid>
+					<h:outputText value="Projet"/> 
+        <h:selectOneMenu value="#{tacheBean.selected_projet_id}">
+         <f:selectItems value="#{tacheBean.projects}" var="projet" itemValue="#{projet.id}" itemLabel="#{projet}"/>
+        </h:selectOneMenu>
+
+
+					<!-- ajout des taches -->
+					<h:outputText value="nom  de la tache" />
+					<h:inputText value="#{tacheBean.nom_t}" />
+
+					<h:outputText value="description de la tache" />
+					<h:inputText value="#{tacheBean.description_t}" />
+
+					<h:outputText value="date debut" />
+					<p:calendar value="#{tacheBean.date_debut_t}" showOn="button"></p:calendar>
+
+					<h:outputText value="durée estimée de la tache" />
+					<h:inputText value="#{tacheBean.dureeEtimee_t}" />
+ 
+					<h:commandButton action="#{tacheBean.ajouterTache()}"
+						value="Ajouter tache" />
+				</h:panelGrid>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

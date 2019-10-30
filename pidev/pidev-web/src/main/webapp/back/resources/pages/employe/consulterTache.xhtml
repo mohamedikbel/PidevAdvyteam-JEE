@@ -1,0 +1,65 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/template/template.xhtml">
+
+
+	<ui:define name="title">welcome </ui:define>
+	<ui:define name="content">
+		<h:form>
+
+			<h:panelGrid columns="3" style="width:30%">
+
+				<h:outputText value="IDENTIFIANT" />
+				<h:inputText value="#{tacheBean.id_t}" required="#{tacheBean.id_t}"
+					disabled="true" />
+				<br />
+
+				<h:outputText value="Nom Du Projet" />
+				<h:inputText value="#{tacheBean.nom_t}"
+					required="#{tacheBean.nom_t}" />
+				<br />
+
+
+				<h:outputText value="Description du Projet" />
+				<h:inputText value="#{tacheBean.description_t}"
+					required="#{tacheBean.description_t}" ></h:inputText>
+				<br />
+
+
+				<h:outputText value="date debut" />
+				<h:inputText value="#{tacheBean.date_debut_t}"
+					 ><f:convertDateTime pattern="dd-MM-yyyy" /></h:inputText>
+				<br />
+
+				<h:outputText value="date Fin" />
+				<h:inputText value="#{tacheBean.date_fin_t}"
+					  ><f:convertDateTime pattern="dd-MM-yyyy" /></h:inputText>
+				<br />
+
+				<h:outputText value="Durée estimée" />
+				<h:inputText value="#{projetBean.dureeEstimee}" />
+				<br />
+
+				<h:outputText value="Durée réelle" />
+				<h:inputText value="#{projetBean.dureeReelle}" />
+				<br />
+
+				 <h:outputText value="Phase " />
+				<h:selectOneMenu value="#{tacheBean.phase_t}">
+					<f:selectItem  itemValue="" />
+					<f:selectItems value="#{data_phase.phaseTaches}" />
+
+				</h:selectOneMenu>  
+
+
+				<h:commandButton action="#{tacheBean.modifier()}" value="modifier" />
+				<h:commandButton action="#{tacheBean.supprimer(tacheBean.id_t)}" value="supprimer" />
+
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

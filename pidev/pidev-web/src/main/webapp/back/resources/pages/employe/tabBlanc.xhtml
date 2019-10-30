@@ -1,0 +1,140 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+	<ui:define name="title">welcome </ui:define>
+	<ui:define name="content">
+		<script type="text/javascript">
+			function handleDrop(event, ui) {
+				var droppedCar = ui.draggable;
+
+				droppedCar.fadeOut('fast');
+			}
+		</script>
+
+		<h:form>
+
+			<h:outputText value="Projet" />
+			<h:selectOneMenu value="#{tacheBean.selectedProject_tabBlanc}">
+				<f:selectItems value="#{tacheBean.projects}" var="projet"
+					itemValue="#{projet.id}" itemLabel="#{projet}" />
+			</h:selectOneMenu>
+
+			<h:commandButton action="#{tacheBean.afficherTabBlanc()}" value="OK" />
+
+		</h:form>
+		<h:form id="carForm">
+			<h:panelGrid columns="3" style="width:100%">
+				<p:fieldset id="toDoList" legend="TO DO" style="width:90% ">
+					<p:dataGrid id="toDoID" var="tache" value="#{tacheBean.toDoList}"
+						columns="1">
+						<p:panel id="pnl" header="#{tache.nom}" style="text-align:center">
+							<h:panelGrid columns="1" style="width:100%">
+								<h:outputText value="Description : #{tache.description}" />
+								<h:outputText value="durée esstimée :#{tache.dureeEtimee}" />
+
+								<h:commandButton action="#{tacheBean.mAffecter(tache)}"
+									value="m'affecter" />
+
+							</h:panelGrid>
+						</p:panel>
+
+						<p:draggable for="pnl" revert="true" handle=".ui-panel-titlebar"
+							stack=".ui-panel" />
+
+					</p:dataGrid>
+
+					<p:droppable for="toDoList" tolerance="touch"
+						activeStyleClass="ui-state-highlight" datasource="basketID"
+						onDrop="handleDrop">
+						<p:ajax listener="#{tacheBean.onTacheDrop4_1}"
+							update="toDoList basketID" />
+					</p:droppable>
+
+
+				</p:fieldset>
+				<p:fieldset id="doingList" legend="DOING" style="width:90%">
+					<p:dataGrid id="doingID" var="tache" value="#{tacheBean.doingList}"
+						columns="1">
+						<p:panel id="pnl1" header="#{tache.nom}" style="text-align:center">
+							<h:panelGrid columns="1" style="width:100%">
+								<h:outputText value="Description : #{tache.description}" />
+								<h:outputText value="Durée estimée: #{tache.dureeEtimee}" />
+								<h:outputText value="Date Début: #{tache.date_debut}" />
+								<h:outputText value="Affectée à: #{tache.employe.nom}" />
+
+
+
+							</h:panelGrid>
+						</p:panel>
+
+						<p:draggable for="pnl1" revert="true" handle=".ui-panel-titlebar"
+							stack=".ui-panel" />
+					</p:dataGrid>
+
+
+					<p:droppable for="doingList" tolerance="touch"
+						activeStyleClass="ui-state-highlight" datasource="toDoID"
+						onDrop="handleDrop">
+						<p:ajax listener="#{tacheBean.onTacheDrop1_2}"
+							update="doingList toDoID" />
+					</p:droppable>
+				</p:fieldset>
+
+				<p:fieldset id="doneList" legend="DONE" style="width:90%">
+					<p:dataGrid id="doneID" var="tache" value="#{tacheBean.doneList}"
+						columns="1">
+						<p:panel id="pnl2" header="#{tache.nom}" style="text-align:center">
+							<h:panelGrid columns="1" style="width:100%">
+								<h:outputText value="Description: #{tache.description}" />
+								<h:outputText value="Durée estimée: #{tache.dureeEtimee}" />
+								<h:outputText value="Durée reelle: #{tache.dureeReelle}" />
+								<h:outputText value="Date Début: #{tache.date_debut}" />
+								<h:outputText value="Date Début: #{tache.date_fin}" />
+								<h:outputText value="Affectée à: #{tache.employe.nom}" />
+								
+								 
+								
+							</h:panelGrid>
+						</p:panel>
+
+						<p:draggable for="pnl2" revert="true" handle=".ui-panel-titlebar"
+							stack=".ui-panel" />
+					</p:dataGrid>
+
+
+					<p:droppable for="doneList" tolerance="touch"
+						activeStyleClass="ui-state-highlight" datasource="doingID"
+						onDrop="handleDrop">
+						<p:ajax listener="#{tacheBean.onTacheDrop2_3}"
+							update="doneList doingList" />
+					</p:droppable>
+				</p:fieldset>
+
+				<p:fieldset id="basketList" legend="basket">
+					<p:dataGrid id="basketID" var="tache"
+						value="#{tacheBean.basketList}" columns="1">
+						<p:panel id="pnl3" header="#{tache.nom}" style="text-align:center">
+							<h:panelGrid columns="1" style="width:90%">
+								<h:inputText value="#{tache.description}" />
+							</h:panelGrid>
+						</p:panel>
+
+						<p:draggable for="pnl3" revert="true" handle=".ui-panel-titlebar"
+							stack=".ui-panel" />
+					</p:dataGrid>
+
+
+					<p:droppable for="basketList" tolerance="touch"
+						activeStyleClass="ui-state-highlight" datasource="doneID"
+						onDrop="handleDrop">
+						<p:ajax listener="#{tacheBean.onTacheDrop3_4}"
+							update="basketList doneList" />
+					</p:droppable>
+				</p:fieldset>
+
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
