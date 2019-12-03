@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-//@WebFilter ("/advyteam/*")
+@WebFilter ("/advyteam/*")
 public class AuthorizationFilter implements Filter {
 
 	@Override
@@ -48,7 +48,7 @@ public class AuthorizationFilter implements Filter {
          * Si l'objet utilisateur n'existe pas dans la session en cours, alors
          * l'utilisateur n'est pas connecté.
          */
-        if ( loginBean != null ||servletRequest.getRequestURI().toString().contains("login.jsf") ) {
+        if ( loginBean!= null ||servletRequest.getRequestURI().toString().contains("login.jsf") ) {
             /* Redirection vers la page publique */
 chain.doFilter(servletRequest, servletResponse);        
 } else {

@@ -5,7 +5,12 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@XmlRootElement
 @Entity
 public class Employe  {
 @Id
@@ -51,6 +56,21 @@ public String getPassword() {
 public void setPassword(String password) {
 	Password = password;
 }
+public String getNumtel() {
+	return numtel;
+}
+
+public void setNumtel(String numtel) {
+	this.numtel = numtel;
+}
+
+public String getQrlogin() {
+	return qrlogin;
+}
+
+public void setQrlogin(String qrlogin) {
+	this.qrlogin = qrlogin;
+}
 
 public Date getDatedn() {
 	return datedn;
@@ -62,6 +82,26 @@ public void setDatedn(Date datedn) {
 
 public String getCodeqr() {
 	return codeqr;
+}
+
+
+
+public Employe(int id, String nom, String prenom, String email, String password, Date datedn, String codeqr, Role role,
+		String image, String numtel, String qrlogin, List<Document> documents, List<Commentaire> commentaires) {
+	super();
+	this.id = id;
+	this.nom = nom;
+	this.prenom = prenom;
+	this.email = email;
+	Password = password;
+	this.datedn = datedn;
+	this.codeqr = codeqr;
+	this.role = role;
+	this.image = image;
+	this.numtel = numtel;
+	this.qrlogin = qrlogin;
+	this.documents = documents;
+	this.commentaires = commentaires;
 }
 
 public void setCodeqr(String codeqr) {
@@ -103,6 +143,13 @@ private String email;
 private String Password;
 @Column(name="datedn")
 private Date datedn;
+public List<Commentaire> getCommentaires() {
+	return commentaires;
+}
+
+public void setCommentaires(List<Commentaire> commentaires) {
+	this.commentaires = commentaires;
+}
 @Column(name="codeqr")
 private String codeqr;
 @Enumerated(EnumType.STRING)
@@ -110,6 +157,10 @@ private String codeqr;
 private Role role;
 @Column(name="image")
 private String image;
+@Column 
+private String numtel;
+@Column
+private String qrlogin;
 
 
 
@@ -129,8 +180,10 @@ public Employe(String nom, String prenom, String email, String password, Date da
 @ManyToMany
 private List<Document> documents;
 
+@ManyToMany
+private List<Commentaire>commentaires ;
+
 public Employe() {
-	super();
 
 
 
@@ -140,6 +193,8 @@ public Employe() {
 
 
 }
+
+
 
 
 

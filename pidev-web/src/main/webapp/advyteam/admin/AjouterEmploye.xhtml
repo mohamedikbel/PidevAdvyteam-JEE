@@ -61,8 +61,8 @@
                            </a>
                         </li>
                         <li class=" ">
-                           <a href="dashboard_v3.html" title="Dashboard v3">
-                              <span>Dashboard v3</span>
+                           <a href="EmployeProfile.jsf" title="Profile">
+                              <span>Profile</span>
                            </a>
                         </li>
                      </ul>
@@ -465,7 +465,8 @@
                         <h:form enctype="multipart/form-data" role="form" >
                          <div class="form-group">
                               <label>Nom:</label>
-                              <h:inputText id="nom"  value="#{employeBean.nom}" required="true"  placeholder="Enter email" class="form-control"/>
+                              <h:inputText id="nom"  value="#{employeBean.nom}" required="true"  placeholder="Enter email" class="form-control">
+                              			</h:inputText>
                           	       <br></br>
                           	        <h:message id="nommessage" for="nom"  class="alert alert-danger" />
                           
@@ -484,9 +485,10 @@
                          <div class="form-group">
                               <label>Email address:</label>
                            
-                          <h:inputText a:placeholder="Adresse Mail exemple@exemple.com" value="#{employeBean.email}"  required="true" id="emailm" placeholder="Enter email" class="form-control"/>
+                          <h:inputText a:placeholder="Adresse Mail exemple@exemple.com" value="#{employeBean.email}"  required="true"  placeholder="Enter email" class="form-control">
+                                                           	<f:validator validatorId="emailValidator"/>
                                                             <br></br>
-                                 
+                                 </h:inputText>
                                    <h:message id="mailmessage" for="eamilm" class="alert alert-danger" />
                           
                            </div>

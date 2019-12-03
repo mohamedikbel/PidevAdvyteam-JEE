@@ -25,7 +25,7 @@
          data source, this example data source is just for development and testing! -->
       <!-- The datasource is deployed as <EAR>/META-INF/pidev-ds.xml, you
          can find it in the source at ear/src/main/application/META-INF/pidev-ds.xml -->
-      <jta-data-source>java:/pidevDS</jta-data-source>
+      <jta-data-source>java:/advyteamDS</jta-data-source>
       <properties>
          <!-- Properties for Hibernate -->
   <property name="hibernate.hbm2ddl.auto" value="create" />
@@ -34,6 +34,7 @@
 <property name="hibernate.format_sql" value="true" />
 <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
 <property name="current_session_context_class" value="org.hibernate.context.internal.ThreadLocalSessionContext"/>
+<property name="hibernate.enable_lazy_load_no_trans" value="true" />
 
       </properties>
    </persistence-unit>

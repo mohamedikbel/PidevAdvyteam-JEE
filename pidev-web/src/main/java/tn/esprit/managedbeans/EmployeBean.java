@@ -12,6 +12,20 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.HEAD;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import tn.esprit.entity.Employe;
 import tn.esprit.entity.Role;
@@ -22,11 +36,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+@Path("employe")
 @ManagedBean(name = "employeBean")
 @SessionScoped
 public class EmployeBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
+	@ManagedProperty(value="#{loginBean}")
+	private  LoginBean lBean;
 	@EJB
 	Serviceemp employeService;
 	private String prenom;
@@ -104,13 +121,16 @@ public class EmployeBean implements Serializable {
 		return file;
 	}
 
-	public List<Employe> employes;
-
-	public int idEmployeUpdated;
-
-	public List<Employe> getEmployes() {
-		employes = employeService.getAllEmployes();
-		return employes;
+	private List<Employe> employes;
+	private int idEmployeUpdated;
+	
+    @GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getEmployes()  {
+		//employes = employeService.getAllEmployes();
+	//	.header("Authorization", "Bearer " +lBean.tokenpi)
+		System.out.println(lBean.tokenpi);
+	return Response.ok(employeService.getAllEmployes()).build();
 	}
 
 	public void reload() throws IOException {
@@ -123,21 +143,40 @@ public class EmployeBean implements Serializable {
 	public void setFile(Part file) {
 		this.file = file;
 	}
-
-	public void AddEmploye() {
-		for (String cd : file.getHeader("Content-Disposition").split(";")) {
+	
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	
+	public Response AddEmploye(Employe e) {
+		/*for (String cd : file.getHeader("Content-Disposition").split(";")) {
 			if (cd.trim().startsWith("filename")) {
 				String filename = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
 				image = filename.substring(filename.lastIndexOf('/') + 1).substring(filename.lastIndexOf('\\') + 1);
 			}
-		}
-		employeService.Addemploye(new Employe(nom, prenom, email, password, datedn, role, image));
+		}*/
+		
+		/*
 		try {
-			reload();
-		} catch (IOException e) {
+			/*reload();
+		} catch (IOException es) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			es.printStackTrace();
+		}*/
+		if(employeService.getemployemail(e.getEmail())==null)
+		{	employeService.Addemploye(e);
+        
+		return Response.status(202).entity("Employe Ajouté").build();}
+		
+		return Response.status(400).entity("Email Existant").build();
+         
+        
+  /*    System.out.println("******************************************************");
+
+		System.out.println(e);
+		 employeService.Addemploye(e);
+	     return Response.status(Status.CREATED).entity("success").build();*/
+
 	}
 
 	public void initialisation() {
@@ -171,18 +210,25 @@ public class EmployeBean implements Serializable {
 
 	}
 
-	public void updateEmploye() {
+	@PUT
+	@Path("/{identif}")
+	@Consumes(MediaType.APPLICATION_JSON) 
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateEmploye(@PathParam(value="identif") int id , Employe E) {
 		Employe ee = new Employe();
 
-		ee.setId(this.getIdEmployeUpdated());
-		ee.setNom(nom);
-		ee.setPrenom(prenom);
-		ee.setEmail(email);
-		ee.setPassword(password);
-		ee.setRole(role);
-		ee.setDatedn(datedn);
+		ee.setId(id);
+		ee.setNom(E.getNom());
+		ee.setPrenom(E.getPrenom());
+		ee.setEmail(E.getEmail());
+		ee.setPassword(E.getPassword());
+		ee.setRole(E.getRole());
+		ee.setImage(E.getImage());
+
+		ee.setDatedn(E.getDatedn());
 
 		employeService.updateEmploye(ee);
+		return Response.ok(employeService.getAllEmployes()).build();
 	}
 
 	public void updateEmploye(Employe ee) {
@@ -195,10 +241,14 @@ public class EmployeBean implements Serializable {
 
 		employeService.updateEmploye(ee);
 	}
-
-	public void supprimerEmploye(int idEmploye) {
+	@DELETE
+	@Path("/{identif}")
+	@Consumes(MediaType.APPLICATION_JSON) 
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response supprimerEmploye(@PathParam(value="identif") int idEmploye) {
 
 		employeService.deleteEmployeById(idEmploye);
+        return Response.status(202).entity("Employe supprimé").build();
 
 	}
 
@@ -212,15 +262,30 @@ public class EmployeBean implements Serializable {
 		return enabled;
 	}
 
-	public void AjouterBeta() {
+	@POST
+	@Path("/Beta")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response AjouterBeta(@FormParam("role") Role role ,@FormParam("image") String image) {
 
-		for (String cd : file.getHeader("Content-Disposition").split(";")) {
+		/*for (String cd : file.getHeader("Content-Disposition").split(";")) {
 			if (cd.trim().startsWith("filename")) {
 				String filename = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
 				image = filename.substring(filename.lastIndexOf('/') + 1).substring(filename.lastIndexOf('\\') + 1);
-			}
-		}
+			}}*/
 		employeService.AddemployeBeta(role, image);
+		return Response.ok(employeService.getAllEmployes()).build();
+
+		
+		
 	}
 
+	@GET
+	@Path("/{description}")
+	//@Consumes(MediaType.APPLICATION_JSON) // l'entree
+	@Produces(MediaType.APPLICATION_JSON) // le retour (sortie)	
+	public Response recherPersonneFiltrage(@PathParam("description") String description) {
+		return Response.ok(employeService.rechercherEmployeParCritere(description)).build(); 
+	}
+	
 }

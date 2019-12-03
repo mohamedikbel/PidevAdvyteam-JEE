@@ -35,6 +35,13 @@ public class Servicedocu implements Servicedocuremote {
 	}
 
 	@Override
+public List<Document> getAllDocu() {
+		List<Document> emp = em.createQuery("Select d from Document d", Document.class).getResultList();
+		return emp;
+	}
+	
+	
+	@Override
 	        public void AffecterDocumentEmploye(int iddoc, int idemp) {
 	        Employe emp = em.find(Employe.class, idemp);
 

@@ -1,6 +1,7 @@
 package tn.esprit.managedbeans;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -10,11 +11,35 @@ import javax.faces.bean.SessionScoped;
 import com.itextpdf.text.DocumentException;
 
 import tn.esprit.entity.Document;
+import tn.esprit.entity.Employe;
 import tn.esprit.service.Servicedocu;
 
 @SessionScoped
 @ManagedBean
 public class DocumentBean {
+	public List<Document> getDocuments() {
+		documents = ser.getAllDocu();
+		System.out.println(documents);
+		return documents;
+	}
+
+
+
+	public void setDocuments(List<Document> documens) {
+		this.documents = documens;
+	}
+
+	public Servicedocu getSer() {
+		return ser;
+	}
+
+
+
+	public void setSer(Servicedocu ser) {
+		this.ser = ser;
+	}
+
+	public List<Document> documents;
 
 	private int id;
 	private String nom;
@@ -140,12 +165,14 @@ public class DocumentBean {
 			nomdoc= nomemp+prenom+"-cvadvyteam.pdf";
 			op.setNomdoc(nomdoc);
 			int iddoc=ser.AjouterDocumentB(op, nomemp, prenom, email, role);
- ; 
+; 
 			ser.AffecterDocumentEmploye(iddoc,1);
 	   
         }
 
-
+ 
+	   
+	
 
 
    	 

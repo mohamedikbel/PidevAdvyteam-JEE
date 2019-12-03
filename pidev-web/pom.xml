@@ -24,6 +24,7 @@
       <groupId>esprit.tn</groupId>
       <version>0.0.1-SNAPSHOT</version>
    </parent>
+   
 
    <artifactId>pidev-web</artifactId>
    <packaging>war</packaging>
@@ -40,7 +41,12 @@
    </licenses>
 
    <dependencies>
-
+<dependency>
+    <groupId>javax</groupId>
+    <artifactId>javaee-api</artifactId>
+    <version>7.0</version>
+    <scope>provided</scope>
+</dependency>
       <!-- Dependency on the EJB module so we can use it's services if needed -->
       <dependency>
          <groupId>esprit.tn</groupId>
@@ -48,7 +54,46 @@
          <type>ejb</type>
          <scope>provided</scope>
       </dependency>
-
+<dependency> 
+						  		<groupId>org.jboss.resteasy</groupId>
+						  		<artifactId>resteasy-jaxrs</artifactId>
+						  		<version>3.0.19.Final</version>
+						  		<scope>provided</scope>
+					  		</dependency>
+					  		 <dependency>
+								    <groupId>org.jboss.resteasy</groupId>
+								    <artifactId>resteasy-client</artifactId>
+								    <version>3.0.19.Final</version>
+							</dependency>
+							
+							<dependency>
+								<groupId>javax.transaction</groupId>
+								<artifactId>javax.transaction-api</artifactId>
+								<version>1.2</version> 
+							</dependency>
+							<dependency>
+								<groupId>io.jsonwebtoken</groupId>
+								<artifactId>jjwt</artifactId>
+								<version>0.6.0</version>
+							</dependency>
+<dependency>
+<groupId>org.jboss.resteasy</groupId>
+<artifactId>resteasy-jaxrs</artifactId>
+<version>3.0.19.Final</version>
+<scope>provided</scope>
+</dependency>
+<!-- https://mvnrepository.com/artifact/javax.transaction/javax.transaction-api -->
+<dependency>
+<groupId>javax.transaction</groupId>
+<artifactId>javax.transaction-api</artifactId>
+<version>1.2</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+<dependency>
+<groupId>io.jsonwebtoken</groupId>
+<artifactId>jjwt</artifactId>
+<version>0.6.0</version>
+</dependency>
       <!-- Import the JAX-RS API, we use provided scope as the API is included in JBoss WildFly -->
       <dependency>
          <groupId>org.jboss.resteasy</groupId>

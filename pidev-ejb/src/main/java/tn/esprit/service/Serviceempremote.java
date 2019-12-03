@@ -19,7 +19,7 @@ public interface Serviceempremote {
 	public Employe getemployemail(String Mail);
 	public Employe getemployemailqr(String Mail,String Qr);
 	public void updatere(String Mail,String Qr,String  pass);
-
+	public List<Employe> rechercherEmployeParCritere(String critere);
 	
 
 	
