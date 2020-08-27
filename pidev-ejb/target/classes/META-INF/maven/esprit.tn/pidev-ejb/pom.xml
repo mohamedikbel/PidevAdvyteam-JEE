@@ -110,6 +110,14 @@
         	<groupId>com.itextpdf</groupId>
         	<artifactId>itextpdf</artifactId>
         </dependency>
+        <dependency>
+        	<groupId>javax.servlet</groupId>
+        	<artifactId>jstl</artifactId>
+        </dependency>
+        <dependency>
+        	<groupId>com.fasterxml.jackson.core</groupId>
+        	<artifactId>jackson-annotations</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -202,6 +210,16 @@
     			<artifactId>itextpdf</artifactId>
     			<version>5.5.10</version>
     		</dependency>
+    			<dependency>
+    				<groupId>javax.servlet</groupId>
+    				<artifactId>jstl</artifactId>
+    				<version>1.2</version>
+    			</dependency>
+    			<dependency>
+    				<groupId>com.fasterxml.jackson.core</groupId>
+    				<artifactId>jackson-annotations</artifactId>
+    				<version>2.3.3</version>
+    			</dependency>
     	</dependencies>
     </dependencyManagement>
 </project>

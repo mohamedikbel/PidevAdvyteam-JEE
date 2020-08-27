@@ -1,0 +1,78 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+	<ui:define name="title">welcome </ui:define>
+	<ui:define name="content">
+
+		<h:form>
+			<h:panelGrid columns="3" style="width:30%">
+
+				<h:outputText value="IDENTIFIANT" />
+				<h:inputText value="#{projetBean.idToBeUpdate}"
+					required="#{projetBean.idToBeUpdate}" disabled="true" />
+				<br />
+
+				<h:outputText value="Nom Du Projet" />
+				<h:inputText value="#{projetBean.nom}" required="#{projetBean.nom}" />
+				<br />
+
+
+				<h:outputText value="Description du Projet" />
+				<h:inputText value="#{projetBean.description}"
+					required="#{projetBean.description}" />
+				<br />
+
+
+				<h:outputText value="date debut" />
+				<h:inputText id="date" value="#{projetBean.date_debut}">
+					<f:convertDateTime pattern="dd-MM-yyyy" />
+				</h:inputText>
+				<br />
+
+				<h:outputText value="date Fin" />
+				<h:inputText value="#{projetBean.date_fin}">
+					<f:convertDateTime pattern="dd-MM-yyyy" />
+				</h:inputText>
+				<br />
+
+				<h:outputText value="Durée estimée" />
+				<h:inputText value="#{projetBean.dureeEstimee}" />
+				<br />
+
+				<h:outputText value="Durée réelle" />
+				<h:inputText value="#{projetBean.dureeReelle}" />
+				<br />
+
+
+				<h:commandButton action="#{projetBean.modifier()}" value="modifier" />
+				<h:commandButton action="#{projetBean.supprimer()}"
+					value="supprimer" />
+
+			</h:panelGrid>
+			<h:panelGrid>
+
+				 
+
+				<p:fieldset legend="Tache" style="width:90% ">
+					<p:dataGrid var="tache" value="#{tacheBean.taches_projet}"
+						columns="3">
+						<p:panel header="#{tache.nom}" style="text-align:center">
+							<h:panelGrid columns="1" style="width:100%">
+								<h:inputText value="#{tache.description}" />
+								<h:commandButton id="btn"
+									action="#{tacheBean.consulterTache(tache)}" value="consulter" />
+								<h:message for="btn" />
+							</h:panelGrid>
+						</p:panel>
+
+					</p:dataGrid>
+				</p:fieldset>
+
+
+			</h:panelGrid>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
